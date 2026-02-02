@@ -26,11 +26,8 @@ def experiment():
         bandits = [Bandit(p) for p in BANDIT_PROBABILITIES]
 
         rewards = np.zeros(NUM_TRIALS)
-        # num_times_explored = 0
-        # num_times_exploited = 0
-        # num_optimal = 0
-        # optimal_j = np.argmax(b.p for b in bandits)
-        # print("optimal j:", optimal_j)
+        optimal_j = np.argmax(b.p for b in bandits)
+        print("optimal j:", optimal_j)
 
         for i in range(NUM_TRIALS):
             j = np.argmax([b.p_estimate for b in bandits])
@@ -51,13 +48,13 @@ def experiment():
         print("num of times selected each bandit: ", [b.N for b in bandits])
 
         cumulative_rewards = np.cumsum(rewards)
-        win_rates = cumulative_rewards / np.arange(1, NUM_TRIALS + 1)
+        win_rates = cumulative_rewards / (np.arange(1, NUM_TRIALS + 1))
         plt.ylim([0, 1])    # sets y-axis range from 0 to 1
         plt.plot(win_rates)
         # plt.plot(np.ones(NUM_TRIALS) * 5) # plots a horizontal line at the optimistic initial value
         plt.plot(np.ones(NUM_TRIALS) * np.max(BANDIT_PROBABILITIES))  # plots a horizontal line at the optimal win rate
         plt.legend(['Win Rate', 'Optimal Bandit'])
-        plt.show()
+        plt.savefig("win_rates_optimistic_initial_value.png")
 
 
 if __name__ == "__main__":

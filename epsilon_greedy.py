@@ -70,7 +70,8 @@ def experiment():
     print("cumulative win rates: ", win_rates)
     plt.plot(win_rates)
     plt.plot(np.ones(NUM_TRIALS) * np.max(BANDIT_PROBABILITIES))
-    plt.savefig("win_rates.png")
+    plt.legend(['Win Rate', 'Optimal Bandit'])
+    plt.savefig("win_rates_epsilon_greedy.png")
 
 if __name__ == "__main__":
     experiment()
