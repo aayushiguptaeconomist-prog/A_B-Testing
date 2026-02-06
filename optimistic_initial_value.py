@@ -20,7 +20,7 @@ class Bandit:
         
     def update(self, x):
         self.N += 1
-        self.p_estimate = self.p_estimate + ((x - self.p_estimate) / self.N)
+        self.p_estimate = self.p_estimate + ((x - self.p_estimate) / self.N) # average formula is re-written to look like gradient descent with learning rate as 1/self.N
 
 def experiment():
         bandits = [Bandit(p) for p in BANDIT_PROBABILITIES]

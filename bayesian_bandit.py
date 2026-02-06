@@ -24,7 +24,7 @@ class Bandit:
         self.b += (1-x)   # b gets incremented by 1 - reward (0 or 1) as it is the failure
 
 def plot(bandits, trials):
-    x = np.linspace(0, 1, 200)  # it is creating a grid of 200 evenly spaced evaluation points b/w 0 and 1. These points will be to evaluate the curve of the beta distribution at that particular point.
+    x = np.linspace(0, 1, 200)  # it is creating a grid of 200 evenly spaced evaluation points b/w 0 and 1. These points will be used to evaluate the curve of the beta distribution at that particular point.
     for b in bandits:   # this for loop plots all three bandits in the same graph, the rest (title etc) is common for all
         y = beta.pdf(x, b.a, b.b)   # using the parameters defined, this generates the beta distribution for each bandit
         plt.plot(x, y, label = f"real p: {b.p:.4f}, win rate: {b.a - 1}/{b.N}") # shows the true probability rounded to 4 decimal points and also the win rate (where a - 1 = # of successes)
